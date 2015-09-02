@@ -11,9 +11,17 @@ use Cinema\Http\Requests;
 use Cinema\Http\Requests\UserCreateRequest;
 use Cinema\Http\Requests\UserUpdateRequest;
 use Cinema\Http\Controllers\Controller;
+use Illuminate\Routing\Route;
 
 class UsuarioController extends Controller
 {
+    public function __construct(){
+        $this->beforeFilter('@find', ['only' => ['edit', 'update', 'destroy']]);
+    }
+
+    public function find(Route $route){
+        $this->user = User::find($route->getParameter('usuario'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,13 +51,10 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => $request['password']
-        ]);
+        User::create($request->all());
 
-       return redirect('/usuario')->with('message', 'store correctly');
+        Session::flash('message', 'Usuario Insertado Correctamente');
+        return Redirect::to('/usuario');
     }
 
     /**
@@ -71,8 +76,7 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('usuario.edit', ['user' => $user]);
+        return view('usuario.edit', ['user' => $this->user]);
     }
 
     /**
@@ -84,9 +88,8 @@ class UsuarioController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $user = User::find($id);
-        $user->fill($request->all());
-        $user->save();
+        $this->user->fill($request->all());
+        $this->user->save();
 
         Session::flash('message', 'Usuario Editado Correctamente');
         return Redirect::to('/usuario');
@@ -100,8 +103,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
+        $this->user->delete();
         Session::flash('message', 'Usuario Eliminado Correctamente');
         return Redirect::to('/usuario');
     }
