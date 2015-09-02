@@ -1,6 +1,8 @@
 @extends('layouts.principal')
 
 @section('content')
+    @include('alerts.errors')
+    @include('alerts.request')
 
     <div class="header">
         <div class="top-header">
@@ -14,17 +16,17 @@
 
         <div class="header-info">
             <h1>BIG HERO 6</h1>
-            <form>
+            {!! Form::open(['route' => 'log.store', 'method' => 'POST']) !!}
                 <div class="form-group">
-                    <label>Usuario</label>
-                    <input type="email" class="form-control" placeholder="Ingresa Usuario">
+                    {!! Form::label('correo', 'Correo:') !!}
+                    {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Ingresar correo']) !!}
                 </div>
                 <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Ingresa Contraseña">
+                    {!! Form::label('contraseña', 'Contrasena:') !!}
+                    {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Ingresar contraseña']) !!}
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-            </form>
+            {!! Form::submit('Iniciar', ['class'=> 'btn btn-primary']) !!}
+            {!! Form::close() !!}
 
         </div>
 
