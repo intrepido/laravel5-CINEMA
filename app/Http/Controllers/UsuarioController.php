@@ -16,6 +16,8 @@ use Illuminate\Routing\Route;
 class UsuarioController extends Controller
 {
     public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin');
         $this->beforeFilter('@find', ['only' => ['edit', 'update', 'destroy']]);
     }
 
@@ -29,7 +31,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(2);
+        $users = User::paginate(5);
         return view('usuario.index', compact('users'));
     }
 
