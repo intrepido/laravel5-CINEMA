@@ -15,7 +15,7 @@ function Carga(){
 }
 
 function Eliminar(btn){
-	var route = "http://localhost:8000/generos/"+btn.value+"";
+	var route = "http://localhost:8000/genero/"+btn.value+"";
 	var token = $("#token").val();
 
 	$.ajax({
@@ -31,7 +31,7 @@ function Eliminar(btn){
 }
 
 function Mostrar(btn){
-	var route = "http://localhost:8000/generos/"+btn.value+"/edit";
+	var route = "http://localhost:8000/genero/"+btn.value+"/edit";
 
 	$.get(route, function(res){
 		$("#genre").val(res.genre);
@@ -43,7 +43,7 @@ function Mostrar(btn){
 $("#actualizar").click(function(){
 	var value = $("#id").val();
 	var dato = $("#genre").val();
-	var route = "http://localhost:8000/generos/"+value+"";
+	var route = "http://localhost:8000/genero/"+value+"";
 	var token = $("#token").val();
 
 	$.ajax({

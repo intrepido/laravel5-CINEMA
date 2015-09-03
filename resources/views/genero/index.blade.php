@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
 @section('content')
+    <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
+        <strong> Genero Actualizado Correctamente.</strong>
+    </div>
+    @include('genero.modal')
     <table class="table">
         <thead>
             <th>Nombre</th>
