@@ -81,10 +81,10 @@
                         <a href="#"><i class="fa fa-child fa-fw"></i> Genero<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                <a href="{!! URL::to('/genero/create') !!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
                             </li>
                             <li>
-                                <a href="#"><i class='fa fa-list-ol fa-fw'></i> Generos</a>
+                                <a href="{!! URL::to('/genero') !!}"><i class='fa fa-list-ol fa-fw'></i> Generos</a>
                             </li>
                         </ul>
                     </li>
@@ -103,11 +103,12 @@
 
 
 <script src='{{asset('js/jquery.min.js')}}'></script>
-{!! Html::script('js/script.js') !!} {{--Otra forma de ponerlo tambien--}}
 <script src='{{asset('js/bootstrap.min.js')}}'></script>
 <script src='{{asset('js/metisMenu.min.js')}}'></script>
 <script src='{{asset('js/sb-admin-2.js')}}'></script>
 
+@section('scripts')
+@show
 
 </body>
 
