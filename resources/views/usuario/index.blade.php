@@ -1,24 +1,27 @@
 @extends('layouts.admin')
-<?php echo Session::getId();  ?>
 
 @include('alerts.success')
 @section('content')
-
-    <table class="table">
-        <thead>
+    <div class="users">
+        <table class="table">
+            <thead>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Operacion</th>
-        </thead>
-        @foreach($users as $user)
-        <tbody>
-            <td>{{$user->name}}</td>
-            <td>{{$user->email}}</td>
-            <td>{!! link_to_route('usuario.edit', $title = 'Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary']) !!}</td>
-            {{--<td><a href="{{route('usuario.edit',  ['id' => $user->id])}}"  class="btn btn-primary">Editar</a></td>--}}
-        </tbody>
-        @endforeach
-    </table>
-    {!! $users->render() !!}
+            </thead>
+            @foreach($users as $user)
+                <tbody>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>{!! link_to_route('usuario.edit', $title = 'Editar', $parameters = $user->id, $attributes = ['class'=>'btn btn-primary']) !!}</td>
+                {{--<td><a href="{{route('usuario.edit',  ['id' => $user->id])}}"  class="btn btn-primary">Editar</a></td>--}}
+                </tbody>
+            @endforeach
+        </table>
+        {!! $users->render() !!}
+    </div>
+@endsection
 
-@stop
+@section('scripts')
+    {!! Html::script('js/script3.js') !!} {{--Otra forma de ponerlo tambien--}}
+@endsection
