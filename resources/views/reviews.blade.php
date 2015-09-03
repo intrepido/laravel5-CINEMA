@@ -4,46 +4,39 @@
     <div class="review-content">
         <div class="top-header span_top">
             <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                <a href="index.html"><img src="images/logo.png" alt=""/></a>
+
                 <p>Movie Theater</p>
             </div>
             <div class="clearfix"></div>
         </div>
 
 
-
-
         <div class="reviews-section">
             <h3 class="head">Movie Reviews</h3>
+
             <div class="col-md-9 reviews-grids">
-                <div class="review">
-                    <div class="movie-pic">
-                        <img src="images/r4.jpg" alt="" />
-                    </div>
-                    <div class="review-info">
-                        <a class="span" href="single.html">Lorem  <i>Movie Review</i></a>
-                        <p class="info">CAST:&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
-                        <p class="info">DIRECTION:&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
-                        <p class="info">GENRE:&nbsp;&nbsp;Crime</p>
-                        <p class="info">DURATION:&nbsp;&nbsp;1 hour 45 minutes</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
 
+                @foreach($movies as $movie)
+                    <div class="review">
+                        <div class="movie-pic">
+                            <img src="movies/{{$movie->path}}" alt=""/>
+                        </div>
+                        <div class="review-info">
+                            <a class="span" href="single.html">
+                                <i>{{ $movie->name }}</i></a>
 
-                <div class="review">
-                    <div class="movie-pic">
-                        <img src="images/r1.jpg" alt="" />
+                            <p class="info">CAST:&nbsp;&nbsp;{{ $movie->cast }}</p>
+
+                            <p class="info">DIRECTION:&nbsp;&nbsp;{{ $movie->direction }}</p>
+
+                            <p class="info">GENRE:&nbsp;&nbsp;{{ $movie->genre }}</p>
+
+                            <p class="info">DURATION:&nbsp;&nbsp;{{ $movie->duration}}</p>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="review-info">
-                        <a class="span" href="single.html">Lorem  <i>Movie Review</i></a>
-                        <p class="info">CAST:&nbsp;&nbsp;Will Smith, Margot Robbie, Adrian Martinez, Rodrigo Santoro, BD Wong, Robert Taylor</p>
-                        <p class="info">DIRECTION:&nbsp;&nbsp;Glenn Ficarra, John Requa</p>
-                        <p class="info">GENRE:&nbsp;&nbsp;Crime</p>
-                        <p class="info">DURATION:&nbsp;&nbsp;1 hour 45 minutes</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                @endforeach
 
             </div>
 
