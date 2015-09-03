@@ -1,16 +1,25 @@
-<?php
-
-namespace Cinema\Http\Controllers;
-
-use Cinema\Genre;
-use Cinema\Movie;
-use Illuminate\Http\Request;
+<?php namespace Cinema\Http\Controllers;
 
 use Cinema\Http\Requests;
 use Cinema\Http\Controllers\Controller;
 
-class MovieController extends Controller
-{
+use Illuminate\Http\Request;
+use Cinema\Genre;
+use Cinema\Movie;
+use Session;
+use Redirect;
+use Illuminate\Routing\Route;
+class MovieController extends Controller {
+
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('admin');
+        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
+    }
+
+    public function find(Route $route){
+        $this->movie = Movie::find($route->getParameter('pelicula'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +28,7 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::Movies();
-        return view('pelicula.index', compact('movies'));
+        return view('pelicula.index',compact('movies'));
     }
 
     /**
@@ -30,19 +39,19 @@ class MovieController extends Controller
     public function create()
     {
         $genres = Genre::lists('genre', 'id');
-        return view('pelicula.create', compact('genres'));
+        return view('pelicula.create',compact('genres'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
      * @return Response
      */
     public function store(Request $request)
     {
         Movie::create($request->all());
-        return 'Listo';
+        Session::flash('message','Pelicula Creada Correctamente');
+        return Redirect::to('/pelicula');
     }
 
     /**
@@ -62,21 +71,25 @@ class MovieController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $genres = Genre::lists('genre', 'id');
+        return view('pelicula.edit',['movie'=>$this->movie,'genres'=>$genres]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->movie->fill($request->all());
+        $this->movie->save();
+
+        Session::flash('message','Pelicula Editada Correctamente');
+        return Redirect::to('/pelicula');
     }
 
     /**
@@ -85,8 +98,12 @@ class MovieController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        $this->movie->delete();
+        \Storage::delete($this->movie->path);
+        Session::flash('message','Pelicula Eliminada Correctamente');
+        return Redirect::to('/pelicula');
     }
+
 }

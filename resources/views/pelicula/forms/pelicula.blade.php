@@ -22,4 +22,3 @@
 	{!!Form::label('Genero','Genero:')!!}
 	{!!Form::select('genre_id',$genres)!!}
 </div>
-
