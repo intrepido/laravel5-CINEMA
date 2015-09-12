@@ -3,14 +3,13 @@
 namespace Cinema\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
-use Session;
-use Redirect;
-use Cinema\Http\Requests;
-use Cinema\Http\Requests\LoginRequest;
-use Cinema\Http\Controllers\Controller;
 
-class LogController extends Controller
+use Cinema\Http\Requests;
+use Cinema\Http\Controllers\Controller;
+use Session;
+use Mail;
+
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,18 +37,15 @@ class LogController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(LoginRequest $request)
+    public function store(Request $request)
     {
-        if(Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
-            return redirect('admin');
-        }
-        session()->flash('message-error', 'Datos incorrectos');
-        return redirect('/');
-    }
+        Mail::send('emails.contact', $request->all(), function($msj){
+            $msj->subject('Correos de Contacto');
+            $msj->to('denzelpotter3@gmail.com');
+        });
 
-    public function logout(){
-        Auth::logout();
-        return redirect('/');
+        Session::flash('message', 'Mensaje eniado correctmente');
+        return redirect('/contacto');
     }
 
     /**

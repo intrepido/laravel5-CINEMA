@@ -2,6 +2,7 @@
 
 namespace Cinema\Http\Controllers;
 
+
 use Cinema\Genre;
 use Illuminate\Http\Request;
 use Cinema\Http\Requests\GenreRequest;

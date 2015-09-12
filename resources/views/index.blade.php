@@ -7,7 +7,8 @@
     <div class="header">
         <div class="top-header">
             <div class="logo">
-                <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                <a href="index.html"><img src="images/logo.png" alt=""/></a>
+
                 <p>Movie Theater</p>
             </div>
             <div class="clearfix"></div>
@@ -17,14 +18,14 @@
         <div class="header-info">
             <h1>BIG HERO 6</h1>
             {!! Form::open(['route' => 'log.store', 'method' => 'POST']) !!}
-                <div class="form-group">
-                    {!! Form::label('correo', 'Correo:') !!}
-                    {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Ingresar correo']) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('contraseña', 'Contrasena:') !!}
-                    {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Ingresar contraseña']) !!}
-                </div>
+            <div class="form-group">
+                {!! Form::label('correo', 'Correo:') !!}
+                {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Ingresar correo']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('contraseña', 'Contrasena:') !!}
+                {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Ingresar contraseña']) !!}
+            </div>
             {!! Form::submit('Iniciar', ['class'=> 'btn btn-primary']) !!}
             {!! Form::close() !!}
 

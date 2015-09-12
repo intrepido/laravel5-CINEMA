@@ -4,8 +4,6 @@ namespace Cinema\Http\Controllers;
 
 use Cinema\User;
 use Illuminate\Http\Request;
-use Session;
-use Redirect;
 
 use Cinema\Http\Requests;
 use Cinema\Http\Requests\UserCreateRequest;
@@ -58,8 +56,8 @@ class UsuarioController extends Controller
     {
         User::create($request->all());
 
-        Session::flash('message', 'Usuario Insertado Correctamente');
-        return Redirect::to('/usuario');
+        session()->flash('message', 'Usuario Insertado Correctamente');
+        return redirect('/usuario');
     }
 
     /**
@@ -96,8 +94,8 @@ class UsuarioController extends Controller
         $this->user->fill($request->all());
         $this->user->save();
 
-        Session::flash('message', 'Usuario Editado Correctamente');
-        return Redirect::to('/usuario');
+        session()->flash('message', 'Usuario Editado Correctamente');
+        return redirect('/usuario');
     }
 
     /**
@@ -109,7 +107,7 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         $this->user->delete();
-        Session::flash('message', 'Usuario Eliminado Correctamente');
-        return Redirect::to('/usuario');
+        session()->flash('message', 'Usuario Eliminado Correctamente');
+        return redirect('/usuario');
     }
 }

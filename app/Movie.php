@@ -26,4 +26,10 @@ class Movie extends Model
             ->select('movies.*', 'genres.genre')
             ->get();
     }
+
+    public function genre()
+    {
+        return $this->belongsTo('Cinema\Genre');
+    }
+
 }
