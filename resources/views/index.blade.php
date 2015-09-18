@@ -23,11 +23,12 @@
                 {!! Form::text('email', null, ['class'=>'form-control', 'placeholder'=>'Ingresar correo']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('contraseÒa', 'Contrasena:') !!}
-                {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Ingresar contraseÒa']) !!}
+                {!! Form::label('contrase√±a', 'Contrasena:') !!}
+                {!! Form::password('password', ['class'=>'form-control', 'placeholder'=>'Ingresar contrase√±a']) !!}
             </div>
             {!! Form::submit('Iniciar', ['class'=> 'btn btn-primary']) !!}
             {!! Form::close() !!}
+            {!!link_to('password/email', $title = 'Olvidaste tu contrase√±a?', $attributes = null, $secure = null)!!}
 
         </div>
 

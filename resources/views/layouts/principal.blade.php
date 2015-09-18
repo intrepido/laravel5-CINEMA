@@ -2,13 +2,14 @@
 <html>
 <head>
     <title>Cinema A Entertainment Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    {!! Html::style('css/bootstrap.css') !!}
     <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    {!! Html::style('css/style.css') !!}
     <!-- Custom Theme files -->
-    <script src="js/jquery.min.js"></script>
+    {!! Html::script('js/jquery.min.js') !!}
             <!-- Custom Theme files -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -17,8 +18,8 @@
     <div class="menu">
         <ul>
             <li><a class="active" href="{{URL::to('/') }}"><i class="home"></i></a></li>
-            <li><a href="{{URL::to('/reviews') }}"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-            <li><a href="{{URL::to('/contacto') }}"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+            <li><a href="{{url('/reviews') }}"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+            <li><a href="{{url('/contacto') }}"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
         </ul>
     </div>
 
@@ -73,8 +74,8 @@
         });
     });
 </script>
-<script type="text/javascript" src="js/jquery.flexisel.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+{!! Html::script('js/jquery.flexisel.js') !!}
+{!! Html::script('js/bootstrap.min.js') !!}
 
 </body>
 </html>
